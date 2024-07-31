@@ -6,7 +6,7 @@
     <title>Portfolio</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif; /* Updated font family */
             margin: 0;
             padding: 0;
             color: #333;
@@ -33,39 +33,34 @@
             margin: 0;
             font-size: 3em;
             animation: fadeIn 2s;
+            font-family: 'Roboto', sans-serif; /* Updated font for header */
         }
         nav ul {
             list-style-type: none;
             padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
         }
         nav ul li {
-            margin: 0 15px;
+            display: inline;
+            margin: 0 10px;
         }
         nav ul li a {
             color: #fff;
             text-decoration: none;
             font-size: 1.2em;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #ffd700;
+            font-family: 'Roboto', sans-serif; /* Updated font for navigation */
         }
         .social-icons {
             margin: 20px 0;
         }
         .social-icons a {
             color: #fff;
-            margin: 0 15px;
+            margin: 0 10px;
             text-decoration: none;
             font-size: 24px;
             transition: transform 0.3s;
         }
         .social-icons a:hover {
             transform: scale(1.2);
-            color: #ffd700;
         }
         .container {
             width: 80%;
@@ -77,7 +72,7 @@
             margin: 40px 0;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             animation: slideIn 1s;
             transition: background-color 0.3s, color 0.3s;
@@ -90,7 +85,7 @@
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 20px 0;
+            padding: 10px 0;
             transition: background-color 0.3s, color 0.3s;
         }
         footer.dark-mode {
@@ -98,26 +93,17 @@
         }
         .project-item {
             margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .project-item:hover {
-            transform: scale(1.05);
         }
         .project-item img {
             max-width: 100%;
             height: auto;
             display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            filter: blur(5px); /* Default blur */
         }
-        .project-item h3 {
-            margin: 15px;
-            font-size: 1.5em;
-        }
-        .project-item p {
-            margin: 0 15px 15px;
-            font-size: 1em;
+        .project-item img.active {
+            filter: none; /* Remove blur when active */
         }
         .about-content {
             display: flex;
@@ -130,7 +116,6 @@
             width: 150px;
             height: 150px;
             object-fit: cover;
-            transition: filter 0.3s ease;
         }
         .about-content p {
             max-width: 600px;
@@ -151,12 +136,12 @@
             background-color: #222;
         }
         .sidebar a {
-            padding: 15px 20px;
+            padding: 10px 15px;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 25px;
             color: #818181;
             display: block;
-            transition: color 0.3s;
+            transition: 0.3s;
         }
         .sidebar a:hover {
             color: #f1f1f1;
@@ -173,7 +158,7 @@
             cursor: pointer;
             background-color: #111;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             position: fixed;
             top: 20px;
@@ -188,7 +173,7 @@
             cursor: pointer;
             background-color: #111;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             position: fixed;
             top: 20px;
@@ -246,7 +231,7 @@
             cursor: pointer;
             background-color: #111;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             z-index: 2;
         }
@@ -256,6 +241,8 @@
     </style>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Poppins:wght@400;600&display=swap">
 </head>
 <body>
     <header>
@@ -268,10 +255,9 @@
             </nav>
             <div class="social-icons">
                 <a href="https://instagram.com/Zyxoo_09" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://tiktok.com/@dhenzzjet" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://tiktok.com/@Dhenzzjet" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
-    </header
     </header>
     
     <div class="container">
@@ -279,7 +265,7 @@
         <section id="about">
             <h2>About Me</h2>
             <div class="about-content">
-                <img src="https://via.placeholder.com/150?text=Your+Photo" alt="Your Photo">
+                <img src="https://images.app.goo.gl/i3gj8Xh1m1eMhDVc6" alt="Your Photo">
                 <p>Hello! I am a student with a passion for web development. I enjoy solving problems, learning new technologies, and building projects that make a difference.</p>
             </div>
         </section>
@@ -289,18 +275,55 @@
             <h2>Projects</h2>
             <div class="project-item">
                 <h3>Project 1: Responsive Website</h3>
-                <img src="https://via.placeholder.com/800x400?text=Responsive+Website" alt="Responsive Website">
+                <img src="https://via.placeholder.com/
+<img src="https://via.placeholder.com/800x400?text=Responsive+Website" alt="Responsive Website" class="project-image">
                 <p>Developed a fully responsive website for a local business, enhancing their online presence and improving user engagement.</p>
             </div>
             <div class="project-item">
                 <h3>Project 2: Finance Tracker</h3>
-                <img src="https://via.placeholder.com/800x400?text=Finance+Tracker" alt="Finance Tracker">
+                <img src="https://via.placeholder.com/800x400?text=Finance+Tracker" alt="Finance Tracker" class="project-image">
                 <p>Created a finance tracking application to help users manage their personal finances, track expenses, and set budget goals.</p>
             </div>
             <div class="project-item">
                 <h3>Project 3: E-commerce Platform</h3>
-                <img src="https://via.placeholder.com/800x400?text=E-commerce+Platform" alt="E-commerce Platform">
+                <img src="https://via.placeholder.com/800x400?text=E-commerce+Platform" alt="E-commerce Platform" class="project-image">
                 <p>Built a scalable e-commerce platform with a user-friendly interface, secure payment gateway integration, and advanced search capabilities.</p>
+            </div>
+            <!-- Add 7 more projects similarly -->
+            <div class="project-item">
+                <h3>Project 4: Real-Time Chat App</h3>
+                <img src="https://via.placeholder.com/800x400?text=Chat+App" alt="Real-Time Chat App" class="project-image">
+                <p>Developed a real-time chat application using WebSocket for seamless messaging and live updates.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 5: Task Manager</h3>
+                <img src="https://via.placeholder.com/800x400?text=Task+Manager" alt="Task Manager" class="project-image">
+                <p>Built a task manager with features like deadlines, notifications, and priority levels for efficient task management.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 6: Portfolio Website</h3>
+                <img src="https://via.placeholder.com/800x400?text=Portfolio+Website" alt="Portfolio Website" class="project-image">
+                <p>Designed and developed a personal portfolio website to showcase my skills and projects.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 7: Weather App</h3>
+                <img src="https://via.placeholder.com/800x400?text=Weather+App" alt="Weather App" class="project-image">
+                <p>Created a weather application using APIs to provide real-time weather updates and forecasts.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 8: Blogging Platform</h3>
+                <img src="https://via.placeholder.com/800x400?text=Blogging+Platform" alt="Blogging Platform" class="project-image">
+                <p>Developed a blogging platform with features for writing, editing, and sharing blog posts.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 9: Music Player</h3>
+                <img src="https://via.placeholder.com/800x400?text=Music+Player" alt="Music Player" class="project-image">
+                <p>Built a music player application with playlist management, playback controls, and audio visualization.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 10: Recipe Finder</h3>
+                <img src="https://via.placeholder.com/800x400?text=Recipe+Finder" alt="Recipe Finder" class="project-image">
+                <p>Created a recipe finder application that allows users to search for recipes based on ingredients.</p>
             </div>
         </section>
 
@@ -313,10 +336,13 @@
                 <a href="https://tiktok.com/@yourprofile" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
         </section>
-    </div>
-    
-    <footer>
-        <p>&copy; 2024 Dhenzjet</p>
+
+        <!-- Code Examples Section -->
+        
+  
+
+</footer
+        <p>&copy; 2024 15 Years Old </p>
     </footer>
 
     <!-- Sidebar Menu -->
@@ -325,6 +351,7 @@
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
+        <a href="#code-examples">Code Examples</a>
     </div>
     <button class="openbtn" onclick="openNav()">☰ Menu</button>
 
@@ -354,18 +381,10 @@
             }, 2000); // Hide the message after 2 seconds
         }
 
-        window.addEventListener('scroll', function() {
-            var scrolled = window.pageYOffset;
-            var aboutImg = document.querySelector('.about-content img');
-            var projectImgs = document.querySelectorAll('.project-item img');
-            
-            if (scrolled > 100) {
-                aboutImg.style.filter = 'blur(5px)';
-                projectImgs.forEach(img => img.style.filter = 'blur(5px)');
-            } else {
-                aboutImg.style.filter = 'none';
-                projectImgs.forEach(img => img.style.filter = 'none');
-            }
+        document.querySelectorAll('.project-image').forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
         });
 
         document.getElementById("search-input").addEventListener("input", function() {
@@ -398,4 +417,4 @@
         }
     </script>
 </body>
-	</html>
+</html>
