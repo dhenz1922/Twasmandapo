@@ -1,13 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/index.css">
-  <script src="js/index.js"></script>
-  <title>Index.html</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        header {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            transition: background 0.3s;
+        }
+        header.dark-mode {
+            background: linear-gradient(to right, #333, #555);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            animation: fadeIn 2s;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+        .social-icons {
+            margin: 20px 0;
+        }
+        .social-icons a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #ffd700;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+        section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            animation: slideIn 1s;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        section.dark-mode {
+            background-color: #222;
+            color: #e0e0e0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        footer.dark-mode {
+            background-color: #222;
+        }
+        .project-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .project-item:hover {
+            transform: scale(1.05);
+        }
+        .project-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .project-item h3 {
+            margin: 15px;
+            font-size: 1.5em;
+        }
+        .project-item p {
+            margin: 0 15px 15px;
+            font-size: 1em;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1.5s;
+        }
+        .about-content img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+        .about-content p {
+            max-width: 600px;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -250px;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidebar.dark-mode {
+            background-color: #222;
+        }
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: color 0.3s;
+        }
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+        .openbtn:hover {
+            background-color: #444;
+        }
+        .searchbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        .searchbtn:hover {
+            background-color: #444;
+        }
+        #search-form {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        #search-form.dark-mode {
+            background: #333;
+        }
+        #search-form input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .soon-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 24px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 70px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            z-index: 2;
+        }
+        .theme-toggle:hover {
+            background-color: #444;
+        }
+    </style>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-	<h1>Index.html</h1>
+    <header>
+        <div class="container">
+            <h1>My Portfolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://instagram.com/Zyxoo_09" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@dhenzzjet" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </header
+    </header>
+    
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="https://via.placeholder.com/150?text=Your+Photo" alt="Your Photo">
+                <p>Hello! I am a student with a passion for web development. I enjoy solving problems, learning new technologies, and building projects that make a difference.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h3>Project 1: Responsive Website</h3>
+                <img src="https://via.placeholder.com/800x400?text=Responsive+Website" alt="Responsive Website">
+                <p>Developed a fully responsive website for a local business, enhancing their online presence and improving user engagement.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 2: Finance Tracker</h3>
+                <img src="https://via.placeholder.com/800x400?text=Finance+Tracker" alt="Finance Tracker">
+                <p>Created a finance tracking application to help users manage their personal finances, track expenses, and set budget goals.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 3: E-commerce Platform</h3>
+                <img src="https://via.placeholder.com/800x400?text=E-commerce+Platform" alt="E-commerce Platform">
+                <p>Built a scalable e-commerce platform with a user-friendly interface, secure payment gateway integration, and advanced search capabilities.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>If you would like to get in touch, please reach out via the following social media platforms:</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@yourprofile" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Dhenzjet</p>
+    </footer>
+
+    <!-- Sidebar Menu -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+
+    <!-- Search Form -->
+    <div id="search-form">
+        <input type="text" id="search-input" placeholder="Search...">
+    </div>
+    <button class="searchbtn" onclick="showSoonMessage()"><i class="fas fa-search"></i></button>
+    <button class="theme-toggle" onclick="toggleTheme()">Light Mode</button>
+
+    <!-- Soon Message -->
+    <div id="soon-message" class="soon-message">Coming Soon</div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.left = "0";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.left = "-250px";
+        }
+
+        function showSoonMessage() {
+            document.getElementById("soon-message").style.display = "block";
+            setTimeout(function() {
+                document.getElementById("soon-message").style.display = "none";
+            }, 2000); // Hide the message after 2 seconds
+        }
+
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            var aboutImg = document.querySelector('.about-content img');
+            var projectImgs = document.querySelectorAll('.project-item img');
+            
+            if (scrolled > 100) {
+                aboutImg.style.filter = 'blur(5px)';
+                projectImgs.forEach(img => img.style.filter = 'blur(5px)');
+            } else {
+                aboutImg.style.filter = 'none';
+                projectImgs.forEach(img => img.style.filter = 'none');
+            }
+        });
+
+        document.getElementById("search-input").addEventListener("input", function() {
+            let query = this.value.toLowerCase();
+            let items = document.querySelectorAll(".project-item");
+            items.forEach(item => {
+                let text = item.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+            document.querySelectorAll('section').forEach(section => section.classList.toggle('dark-mode'));
+            document.querySelector('footer').classList.toggle('dark-mode');
+            document.querySelector('#mySidebar').classList.toggle('dark-mode');
+            document.querySelector('#search-form').classList.toggle('dark-mode');
+            
+            let themeToggleButton = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggleButton.textContent = 'Light Mode';
+            } else {
+                themeToggleButton.textContent = 'Dark Mode';
+            }
+        }
+    </script>
 </body>
-</html>
+	</html>
